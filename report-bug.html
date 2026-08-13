@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report a Bug - Warmboard Sudoku</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    line-height: 1.6;
+    color: #3a2e26;
+    background-color: #faf6f0;
+  }
+  h1 {
+    color: #6b4423;
+    border-bottom: 2px solid #d9a15b;
+    padding-bottom: 10px;
+  }
+  p.intro {
+    color: #3a2e26;
+  }
+  a {
+    color: #b5651d;
+  }
+  form {
+    background-color: #fff;
+    border: 1px solid #e0d3c2;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 24px 0;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    color: #6b4423;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+  label:first-of-type {
+    margin-top: 0;
+  }
+  .hint {
+    font-weight: 400;
+    color: #8a7a6c;
+    font-size: 13px;
+  }
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 1px solid #d9c9b4;
+    border-radius: 6px;
+    background-color: #faf6f0;
+    color: #3a2e26;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+  button {
+    margin-top: 20px;
+    width: 100%;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #b5651d;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #9c5518;
+  }
+  .fallback {
+    font-size: 13px;
+    color: #8a7a6c;
+    margin-top: 10px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>Warmboard Sudoku — Report a Bug</h1>
+
+<p class="intro">
+  Run into something broken? Fill this out and it'll open your email app with
+  everything pre-filled, ready to send straight to us. We read every report.
+</p>
+
+<form id="bug-form">
+  <label for="what">What happened? <span class="hint">(required)</span></label>
+  <textarea id="what" required placeholder="e.g. The app crashed after I placed a number in the top-right box"></textarea>
+
+  <label for="steps">Steps to reproduce <span class="hint">(optional, but helpful)</span></label>
+  <textarea id="steps" placeholder="e.g. 1. Started a Hard puzzle  2. Filled in about 30 numbers  3. Tapped a cell and it froze"></textarea>
+
+  <label for="device">Device &amp; OS version <span class="hint">(optional)</span></label>
+  <input type="text" id="device" placeholder="e.g. iPhone 13 Pro, iOS 26.5">
+
+  <label for="email">Your email <span class="hint">(optional, in case we need to follow up)</span></label>
+  <input type="email" id="email" placeholder="you@example.com">
+
+  <button type="submit">Open Email to Send Report</button>
+  <p class="fallback">
+    This opens your email app — nothing is sent automatically.
+    Prefer to email directly? Reach us at
+    <a href="mailto:orangecatstudios@proton.me">orangecatstudios@proton.me</a>.
+  </p>
+</form>
+
+<script>
+  document.getElementById('bug-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var what = document.getElementById('what').value.trim();
+    var steps = document.getElementById('steps').value.trim();
+    var device = document.getElementById('device').value.trim();
+    var email = document.getElementById('email').value.trim();
+
+    if (!what) {
+      document.getElementById('what').focus();
+      return;
+    }
+
+    var bodyLines = ['What happened:', what, ''];
+    if (steps) bodyLines.push('Steps to reproduce:', steps, '');
+    if (device) bodyLines.push('Device: ' + device, '');
+    if (email) bodyLines.push('Contact email: ' + email, '');
+
+    var subject = encodeURIComponent('Warmboard Sudoku - Bug Report');
+    var body = encodeURIComponent(bodyLines.join('\n'));
+    window.location.href = 'mailto:orangecatstudios@proton.me?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
