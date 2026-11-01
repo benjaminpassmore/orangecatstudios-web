@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Report a Bug - Warmboard Sudoku</title>
+<title>Report a Bug - Orange Cat Studios</title>
 <style>
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -91,7 +91,7 @@
 </head>
 <body>
 
-<h1>Warmboard Sudoku — Report a Bug</h1>
+<h1 id="page-title">Orange Cat Studios — Report a Bug</h1>
 
 <p class="intro">
   Run into something broken? Fill this out and it'll open your email app with
@@ -120,6 +120,33 @@
 </form>
 
 <script>
+  // Context passed in by the apps via URL params: app, version, build, platform, os.
+  // Values are only ever inserted with textContent / .value / encodeURIComponent.
+  var ALLOWED_APPS = ['2048', 'Warmboard Sudoku', 'Arrows'];
+  var DEFAULT_APP = 'Orange Cat Studios';
+
+  function param(params, name) {
+    return (params.get(name) || '').trim().slice(0, 64);
+  }
+
+  var params = new URLSearchParams(window.location.search);
+  var requestedApp = (params.get('app') || '').trim();
+  var appName = ALLOWED_APPS.indexOf(requestedApp) !== -1 ? requestedApp : DEFAULT_APP;
+  var version = param(params, 'version');
+  var build = param(params, 'build');
+  var platform = param(params, 'platform');
+  var osVersion = param(params, 'os');
+
+  // "<App> <version> (<build>)" with missing pieces left out.
+  var appLabel = appName;
+  if (version) appLabel += ' ' + version;
+  if (build) appLabel += ' (' + build + ')';
+  var deviceInfo = [platform, osVersion].filter(Boolean).join(' ');
+
+  document.title = 'Report a Bug - ' + appName;
+  document.getElementById('page-title').textContent = appName + ' — Report a Bug';
+  if (deviceInfo) document.getElementById('device').value = deviceInfo;
+
   document.getElementById('bug-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var what = document.getElementById('what').value.trim();
@@ -132,12 +159,13 @@
       return;
     }
 
-    var bodyLines = ['What happened:', what, ''];
+    var bodyLines = ['App: ' + appLabel + (deviceInfo ? ', ' + deviceInfo : ''), ''];
+    bodyLines.push('What happened:', what, '');
     if (steps) bodyLines.push('Steps to reproduce:', steps, '');
     if (device) bodyLines.push('Device: ' + device, '');
     if (email) bodyLines.push('Contact email: ' + email, '');
 
-    var subject = encodeURIComponent('Warmboard Sudoku - Bug Report');
+    var subject = encodeURIComponent(appLabel + ' - Bug Report');
     var body = encodeURIComponent(bodyLines.join('\n'));
     window.location.href = 'mailto:orangecatstudios@proton.me?subject=' + subject + '&body=' + body;
   });
