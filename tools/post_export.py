@@ -30,6 +30,9 @@ from PIL.PngImagePlugin import PngInfo
 
 SITE = "https://playorangecat.com"
 MARK = b"ocs-post-export"   # written into images this script re-encodes
+# Cloudflare Web Analytics site token (dash.cloudflare.com > Web Analytics >
+# playorangecat.com > Manage site). Empty = no analytics beacon.
+CF_WEB_ANALYTICS_TOKEN = ""
 HEAD_START = "<!-- ocs:head (tools/post_export.py) -->"
 HEAD_END = "<!-- /ocs:head -->"
 SPLASH_LOGO_PX = 128   # shown size; stored at 2x
@@ -94,8 +97,13 @@ def head_block(tpl):
         '<meta property="og:image:height" content="630">',
         '<meta property="og:image:alt" content="Orange Cat Studios: small games, built with obsession.">',
         '<meta name="twitter:card" content="summary_large_image">',
-        HEAD_END,
     ]
+    if CF_WEB_ANALYTICS_TOKEN:
+        # Cookieless page-view counts. Lives on window, so it survives the bundle's page swap.
+        lines.append(
+            "<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" "
+            "data-cf-beacon='{\"token\": \"%s\"}'></script>" % CF_WEB_ANALYTICS_TOKEN)
+    lines.append(HEAD_END)
     return "\n  ".join(lines)
 
 
