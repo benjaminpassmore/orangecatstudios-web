@@ -30,8 +30,9 @@ python3 tools/post_export.py index.html     # needs: pip install pillow
 
 It is safe to run twice. It copies the description, Open Graph and icon tags
 out of the bundle into the real `<head>` (so link previews in iMessage, Slack,
-Discord and X work), swaps the loading placeholder for the centred logo, and
-shrinks bundled images that are far bigger than they are shown (~2.4 MB → ~1.3 MB).
+Discord and X work), swaps the loading placeholder for the centred logo, adds the Cloudflare
+Web Analytics beacon (dash.cloudflare.com > Observability > Analytics > Web
+analytics), and shrinks bundled images that are far bigger than they are shown (~2.4 MB → ~1.3 MB).
 Copy changes belong in the Design file, not here.
 
 ## 1. Push to GitHub
