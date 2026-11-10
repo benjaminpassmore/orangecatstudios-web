@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Orange Cat Studios</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<style>
+  @font-face {
+    font-family: "Archivo";
+    src: url("/assets/archivo-latin.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #ffffff; color: #1a1817;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .bar { border-bottom: 2px solid #1a1817; }
+  .bar a {
+    display: flex; align-items: center; gap: 10px;
+    max-width: 720px; margin: 0 auto; padding: 14px 20px;
+    color: #1a1817; text-decoration: none;
+    font-weight: 900; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .bar img { width: 34px; height: 34px; }
+  main { max-width: 720px; margin: 0 auto; padding: 64px 20px; }
+  .eyebrow { margin: 0 0 14px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #605d5d; }
+  h1 { margin: 0 0 16px; font-size: clamp(36px, 8vw, 64px); font-weight: 900; line-height: 1.04; letter-spacing: -0.035em; }
+  p { font-size: 17px; line-height: 1.55; color: #444141; margin: 0 0 28px; max-width: 46ch; }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 14px 22px; font-weight: 800; font-size: 15px;
+    text-decoration: none; border: 2px solid #1a1817; color: #1a1817;
+  }
+  .btn.primary { background: #e8711d; border-color: #e8711d; color: #ffffff; }
+  .btn:hover { border-color: #e8711d; color: #e8711d; }
+  .btn.primary:hover { background: #c85c12; border-color: #c85c12; color: #ffffff; }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a href="/"><img src="/assets/logo-cat-128.png" alt="">Orange Cat Studios</a>
+</header>
+<main>
+  <p class="eyebrow">404</p>
+  <h1>Nothing here.</h1>
+  <p>That page doesn't exist, or it moved when the site was rebuilt.</p>
+  <div class="links">
+    <a class="btn primary" href="/">Go to the homepage</a>
+    <a class="btn" href="/#games">See the games</a>
+    <a class="btn" href="/#support">Support</a>
+  </div>
+</main>
+</body>
+</html>

@@ -1,20 +1,38 @@
 # playorangecat.com — deploy notes
 
 Everything needed to host the site is in this folder. It is a fully static
-site: one self-contained `index.html` (all CSS, JS and images inlined, ~1.8 MB),
-plus a redirect and the domain config. No build step, no dependencies.
+site: one self-contained `index.html` (all CSS, JS and images inlined, ~1.3 MB
+after `tools/post_export.py`), plus a few small pages, icons and the domain
+config. No build step.
 
 ## Files
 
 | File | What it does |
 | --- | --- |
-| `index.html` | The whole site. Pages are hash routes: `/#home`, `/#games`, `/#sudoku`, `/#2048`, `/#about`, `/#support`, `/#faq`, `/#contact`, `/#privacy` |
-| `privacy.html` | Redirects to `/#privacy` — keeps the URL the apps already link to alive |
+| `index.html` | The whole site. Pages are hash routes: `/#home`, `/#games`, `/#sudoku`, `/#2048`, `/#arrows`, `/#about`, `/#support`, `/#faq`, `/#contact`, `/#privacy` |
+| `report-bug.html` | Bug report form the apps open, e.g. `/report-bug.html?app=2048&version=1.0.3&build=6&platform=ios&os=26.1`. Only `2048`, `Warmboard Sudoku` and `Arrows` are accepted as `app` |
+| `privacy.html`, `support.html` | Redirect to `/#privacy` and `/#support` — keep URLs the apps and store listings already use alive |
+| `404.html` | GitHub Pages shows this for any missing URL |
+| `favicon.ico`, `apple-touch-icon.png` | Browser tab and home-screen icons |
+| `assets/` | Link-preview image (`og-image.png`), the logo and the Archivo font used by the small pages |
+| `tools/post_export.py` | Run after every Design export (below) |
+| `app-ads.txt` | AdMob verification — don't move or rename |
 | `CNAME` | Tells GitHub Pages to serve the site at `playorangecat.com` |
-| `.nojekyll` | Stops GitHub from running Jekyll over the files |
 
 **Do not hand-edit `index.html`.** It is compiled from the design file. Ask for a
-rebuild and replace it wholesale.
+rebuild and replace it wholesale, then run the post-export step.
+
+## After every Design export
+
+```bash
+python3 tools/post_export.py index.html     # needs: pip install pillow
+```
+
+It is safe to run twice. It copies the description, Open Graph and icon tags
+out of the bundle into the real `<head>` (so link previews in iMessage, Slack,
+Discord and X work), swaps the loading placeholder for the centred logo, and
+shrinks bundled images that are far bigger than they are shown (~2.4 MB → ~1.3 MB).
+Copy changes belong in the Design file, not here.
 
 ## 1. Push to GitHub
 

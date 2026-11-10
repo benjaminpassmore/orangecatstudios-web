@@ -4,93 +4,79 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Report a Bug - Orange Cat Studios</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
+  @font-face {
+    font-family: "Archivo";
+    src: url("/assets/archivo-latin.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+  }
+  * { box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    line-height: 1.6;
-    color: #3a2e26;
-    background-color: #faf6f0;
+    margin: 0;
+    background: #ffffff;
+    color: #1a1817;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: #9f460b; }
+  a:hover { color: #e8711d; }
+  .bar { border-bottom: 2px solid #1a1817; }
+  .bar a {
+    display: flex; align-items: center; gap: 10px;
+    max-width: 720px; margin: 0 auto; padding: 14px 20px;
+    color: #1a1817; text-decoration: none;
+    font-weight: 900; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .bar img { width: 34px; height: 34px; }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
+  .eyebrow {
+    margin: 0 0 14px; font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #605d5d;
   }
   h1 {
-    color: #6b4423;
-    border-bottom: 2px solid #d9a15b;
-    padding-bottom: 10px;
+    margin: 0 0 16px; font-size: clamp(30px, 7vw, 46px); font-weight: 900;
+    line-height: 1.06; letter-spacing: -0.03em;
   }
-  p.intro {
-    color: #3a2e26;
-  }
-  a {
-    color: #b5651d;
-  }
-  form {
-    background-color: #fff;
-    border: 1px solid #e0d3c2;
-    border-radius: 8px;
-    padding: 24px;
-    margin: 24px 0;
-  }
+  p.intro { margin: 0; font-size: 17px; color: #444141; max-width: 52ch; }
+  form { border: 2px solid #1a1817; padding: 24px; margin: 28px 0 0; }
   label {
-    display: block;
-    font-weight: 600;
-    color: #6b4423;
-    margin-top: 16px;
-    margin-bottom: 6px;
+    display: block; margin: 22px 0 8px;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
   }
-  label:first-of-type {
-    margin-top: 0;
+  label:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; letter-spacing: 0; text-transform: none; color: #605d5d; font-size: 13px; }
+  input[type="text"], input[type="email"], textarea {
+    width: 100%; font: inherit; font-size: 16px; color: #1a1817;
+    padding: 11px 12px; background: #ffffff;
+    border: 2px solid #1a1817; border-radius: 0;
   }
-  .hint {
-    font-weight: 400;
-    color: #8a7a6c;
-    font-size: 13px;
-  }
-  input[type="text"],
-  input[type="email"],
-  select,
-  textarea {
-    width: 100%;
-    box-sizing: border-box;
-    font-family: inherit;
-    font-size: 15px;
-    padding: 10px 12px;
-    border: 1px solid #d9c9b4;
-    border-radius: 6px;
-    background-color: #faf6f0;
-    color: #3a2e26;
-  }
-  textarea {
-    resize: vertical;
-    min-height: 90px;
-  }
+  input:focus, textarea:focus { outline: 3px solid #f6c294; outline-offset: 0; border-color: #e8711d; }
+  textarea { resize: vertical; min-height: 104px; }
   button {
-    margin-top: 20px;
-    width: 100%;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    background-color: #b5651d;
-    border: none;
-    border-radius: 8px;
-    padding: 14px 20px;
-    cursor: pointer;
+    margin-top: 26px; width: 100%; border: 0; border-radius: 0; cursor: pointer;
+    font: inherit; font-size: 16px; font-weight: 800; color: #ffffff;
+    background: #e8711d; padding: 15px 20px;
   }
-  button:hover {
-    background-color: #9c5518;
-  }
-  .fallback {
-    font-size: 13px;
-    color: #8a7a6c;
-    margin-top: 10px;
-    text-align: center;
-  }
+  button:hover { background: #c85c12; }
+  button:focus-visible { outline: 3px solid #1a1817; outline-offset: 2px; }
+  .fallback { font-size: 13px; color: #605d5d; margin: 14px 0 0; text-align: center; }
+  .back { margin: 28px 0 0; font-size: 14px; }
 </style>
 </head>
 <body>
 
+<header class="bar">
+  <a href="/"><img src="/assets/logo-cat-128.png" alt="">Orange Cat Studios</a>
+</header>
+
+<main>
+<p class="eyebrow">Support</p>
 <h1 id="page-title">Orange Cat Studios — Report a Bug</h1>
 
 <p class="intro">
@@ -100,10 +86,10 @@
 
 <form id="bug-form">
   <label for="what">What happened? <span class="hint">(required)</span></label>
-  <textarea id="what" required placeholder="e.g. The app crashed after I placed a number in the top-right box"></textarea>
+  <textarea id="what" required placeholder="e.g. The game froze right after I tapped Continue"></textarea>
 
   <label for="steps">Steps to reproduce <span class="hint">(optional, but helpful)</span></label>
-  <textarea id="steps" placeholder="e.g. 1. Started a Hard puzzle  2. Filled in about 30 numbers  3. Tapped a cell and it froze"></textarea>
+  <textarea id="steps" placeholder="e.g. 1. Opened the daily challenge  2. Tapped Continue  3. The board froze"></textarea>
 
   <label for="device">Device &amp; OS version <span class="hint">(optional)</span></label>
   <input type="text" id="device" placeholder="e.g. iPhone 13 Pro, iOS 26.5">
@@ -118,6 +104,9 @@
     <a href="mailto:orangecatstudios@proton.me">orangecatstudios@proton.me</a>.
   </p>
 </form>
+
+<p class="back"><a href="/#support">← Support &amp; FAQ</a></p>
+</main>
 
 <script>
   // Context passed in by the apps via URL params: app, version, build, platform, os.
