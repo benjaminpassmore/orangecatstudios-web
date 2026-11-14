@@ -11,7 +11,8 @@ config. No build step.
 | --- | --- |
 | `index.html` | The whole site. Pages are hash routes: `/#home`, `/#games`, `/#sudoku`, `/#2048`, `/#arrows`, `/#about`, `/#support`, `/#faq`, `/#contact`, `/#privacy` |
 | `report-bug.html` | Bug report form the apps open, e.g. `/report-bug.html?app=2048&version=1.0.3&build=6&platform=ios&os=26.1`. Only `2048`, `Warmboard Sudoku` and `Arrows` are accepted as `app` |
-| `privacy.html`, `support.html` | Redirect to `/#privacy` and `/#support` — keep URLs the apps and store listings already use alive |
+| `support.html` | Studio-wide support page: **App** (2048, Warmboard Sudoku, Arrows) and **Topic** (Bug report, Question, Feedback, Purchases), both filled from the URL, plus the version, build, platform, OS and device the app passes, all sent with the message. Opens the visitor's email app (mailto), like `report-bug.html`. Arrows opens it as `/support.html?app=arrows&topic=bug&version=1.0.0&build=5&platform=ios&os=18.1&device=iPhone15,2` |
+| `privacy.html` | Redirects to `/#privacy` — keeps the URL the apps and store listings already use alive |
 | `404.html` | GitHub Pages shows this for any missing URL |
 | `favicon.ico`, `apple-touch-icon.png` | Browser tab and home-screen icons |
 | `assets/` | Link-preview image (`og-image.png`), the logo and the Archivo font used by the small pages |
