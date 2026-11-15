@@ -1,19 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Support — Orange Cat Studios</title>
-<link rel="canonical" href="https://playorangecat.com/#support">
-<meta http-equiv="refresh" content="0; url=/#support">
-<script>location.replace("/#support");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support - Orange Cat Studios</title>
+<meta name="description" content="Get help with 2048, Warmboard Sudoku or Arrows: report a bug, ask a question, send feedback or sort out a purchase.">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://playorangecat.com/support.html">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
-body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-background:#fff;color:#1a1817;font-family:Archivo,system-ui,sans-serif;padding:32px}
-a{color:#9f460b;font-weight:800}
+  @font-face {
+    font-family: "Archivo";
+    src: url("/assets/archivo-latin.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: #1a1817;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: #9f460b; }
+  a:hover { color: #e8711d; }
+  .bar { border-bottom: 2px solid #1a1817; }
+  .bar a {
+    display: flex; align-items: center; gap: 10px;
+    max-width: 720px; margin: 0 auto; padding: 14px 20px;
+    color: #1a1817; text-decoration: none;
+    font-weight: 900; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .bar img { width: 34px; height: 34px; }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
+  .eyebrow {
+    margin: 0 0 14px; font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #605d5d;
+  }
+  h1 {
+    margin: 0 0 16px; font-size: clamp(30px, 7vw, 46px); font-weight: 900;
+    line-height: 1.06; letter-spacing: -0.03em;
+  }
+  p.intro { margin: 0; font-size: 17px; color: #444141; max-width: 52ch; }
+  form { border: 2px solid #1a1817; padding: 24px; margin: 28px 0 0; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  @media (max-width: 520px) { .pair { grid-template-columns: 1fr; } }
+  label {
+    display: block; margin: 22px 0 8px;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .pair label, label.first { margin-top: 0; }
+  @media (max-width: 520px) { .pair > div + div label { margin-top: 22px; } }
+  .hint { font-weight: 400; letter-spacing: 0; text-transform: none; color: #605d5d; font-size: 13px; }
+  input[type="text"], input[type="email"], textarea, select {
+    width: 100%; font: inherit; font-size: 16px; color: #1a1817;
+    padding: 11px 12px; background: #ffffff;
+    border: 2px solid #1a1817; border-radius: 0;
+  }
+  select {
+    -webkit-appearance: none; appearance: none; cursor: pointer;
+    background-image: linear-gradient(45deg, transparent 50%, #1a1817 50%), linear-gradient(135deg, #1a1817 50%, transparent 50%);
+    background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+    background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 36px;
+  }
+  input:focus, textarea:focus, select:focus { outline: 3px solid #f6c294; outline-offset: 0; border-color: #e8711d; }
+  textarea { resize: vertical; min-height: 104px; }
+  .details { margin: 22px 0 0; padding: 12px 14px; background: #f4f3f2; font-size: 14px; color: #444141; }
+  .details[hidden] { display: none; }
+  button {
+    margin-top: 26px; width: 100%; border: 0; border-radius: 0; cursor: pointer;
+    font: inherit; font-size: 16px; font-weight: 800; color: #ffffff;
+    background: #e8711d; padding: 15px 20px;
+  }
+  button:hover { background: #c85c12; }
+  button:focus-visible { outline: 3px solid #1a1817; outline-offset: 2px; }
+  .fallback { font-size: 13px; color: #605d5d; margin: 14px 0 0; text-align: center; }
+  .back { margin: 28px 0 0; font-size: 14px; }
 </style>
 </head>
 <body>
-<p>Redirecting to <a href="/#support">Orange Cat Studios support</a>.</p>
+
+<header class="bar">
+  <a href="/"><img src="/assets/logo-cat-128.png" alt="">Orange Cat Studios</a>
+</header>
+
+<main>
+<p class="eyebrow">Support</p>
+<h1 id="page-title">How can we help?</h1>
+
+<p class="intro">
+  Pick the game and what it's about, then tell us what happened. This opens
+  your email app with everything filled in, ready to send straight to us. We
+  read every message.
+</p>
+
+<form id="support-form">
+  <div class="pair">
+    <div>
+      <label for="app">Game</label>
+      <select id="app">
+        <option value="2048">2048</option>
+        <option value="Warmboard Sudoku">Warmboard Sudoku</option>
+        <option value="Arrows">Arrows</option>
+      </select>
+    </div>
+    <div>
+      <label for="topic">Topic</label>
+      <select id="topic">
+        <option value="bug">Bug report</option>
+        <option value="question">Question</option>
+        <option value="feedback">Feedback</option>
+        <option value="purchases">Purchases</option>
+      </select>
+    </div>
+  </div>
+
+  <label for="message" id="message-label">What happened? <span class="hint">(required)</span></label>
+  <textarea id="message" required placeholder="e.g. The game froze right after I tapped Continue"></textarea>
+
+  <div id="steps-group">
+    <label for="steps">Steps to reproduce <span class="hint">(optional, but helpful)</span></label>
+    <textarea id="steps" placeholder="e.g. 1. Opened Level 12  2. Tapped Continue  3. The board froze"></textarea>
+  </div>
+
+  <label for="device">Device &amp; OS version <span class="hint">(optional)</span></label>
+  <input type="text" id="device" placeholder="e.g. iPhone 13 Pro, iOS 26.5">
+
+  <label for="email">Your email <span class="hint">(optional, in case we need to follow up)</span></label>
+  <input type="email" id="email" placeholder="you@example.com">
+
+  <p class="details" id="app-details" hidden></p>
+
+  <button type="submit">Open Email to Send</button>
+  <p class="fallback">
+    This opens your email app — nothing is sent automatically.
+    Prefer to email directly? Reach us at
+    <a href="mailto:orangecatstudios@proton.me">orangecatstudios@proton.me</a>.
+  </p>
+</form>
+
+<p class="back"><a href="/#support">← Support &amp; FAQ</a></p>
+</main>
+
+<script>
+  // Studio-wide support page. The apps open it with their details in the URL,
+  // e.g. /support.html?app=arrows&topic=bug&version=1.0.0&build=5&platform=ios&os=18.1&device=iPhone15,2
+  // App and Topic are chosen from fixed lists (unknown values are ignored);
+  // everything else is trimmed, length-capped and only ever inserted with
+  // textContent / .value / encodeURIComponent. Sending is the visitor's email
+  // app (mailto), like report-bug.html: nothing is sent from this page.
+  var EMAIL = 'orangecatstudios@proton.me';
+  var APPS = { '2048': '2048', 'warmboard sudoku': 'Warmboard Sudoku', 'sudoku': 'Warmboard Sudoku', 'warmboard-sudoku': 'Warmboard Sudoku', 'arrows': 'Arrows' };
+  var TOPICS = {
+    bug: { label: 'Bug report', prompt: 'What happened?', placeholder: 'e.g. The game froze right after I tapped Continue', steps: true },
+    question: { label: 'Question', prompt: 'Your question', placeholder: 'e.g. How do I move my progress to a new phone?', steps: false },
+    feedback: { label: 'Feedback', prompt: 'Your feedback', placeholder: 'e.g. I would love a darker theme', steps: false },
+    purchases: { label: 'Purchases', prompt: 'What happened with your purchase?', placeholder: 'e.g. I bought Premium but the ads still show', steps: false }
+  };
+
+  function param(params, name) {
+    return (params.get(name) || '').trim().slice(0, 64);
+  }
+
+  var params = new URLSearchParams(window.location.search);
+  var appSelect = document.getElementById('app');
+  var topicSelect = document.getElementById('topic');
+
+  var requestedApp = APPS[param(params, 'app').toLowerCase()];
+  if (requestedApp) appSelect.value = requestedApp;
+  var requestedTopic = param(params, 'topic').toLowerCase();
+  if (TOPICS[requestedTopic]) topicSelect.value = requestedTopic;
+
+  // The app's own details, sent along with the message.
+  var context = {
+    version: param(params, 'version'),
+    build: param(params, 'build'),
+    platform: param(params, 'platform'),
+    os: param(params, 'os'),
+    device: param(params, 'device')
+  };
+  function versionLabel() {
+    var v = context.version;
+    if (v && context.build) v += ' (' + context.build + ')';
+    return v;
+  }
+  var platformName = { ios: 'iOS', android: 'Android' }[context.platform.toLowerCase()] || context.platform;
+  var deviceInfo = [context.device, [platformName, context.os].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+  if (deviceInfo) document.getElementById('device').value = deviceInfo;
+
+  var details = document.getElementById('app-details');
+  if (versionLabel() || deviceInfo) {
+    details.textContent = 'Sent with your message: ' + [versionLabel() ? 'version ' + versionLabel() : '', deviceInfo].filter(Boolean).join(', ') + '.';
+    details.hidden = false;
+  }
+
+  function showTopic() {
+    var t = TOPICS[topicSelect.value];
+    document.getElementById('message-label').firstChild.textContent = t.prompt + ' ';
+    document.getElementById('message').placeholder = t.placeholder;
+    document.getElementById('steps-group').hidden = !t.steps;
+  }
+  topicSelect.addEventListener('change', showTopic);
+  showTopic();
+
+  document.getElementById('support-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var message = document.getElementById('message').value.trim();
+    var steps = document.getElementById('steps').value.trim();
+    var device = document.getElementById('device').value.trim();
+    var email = document.getElementById('email').value.trim();
+    if (!message) {
+      document.getElementById('message').focus();
+      return;
+    }
+    var app = appSelect.value;
+    var topic = TOPICS[topicSelect.value];
+    var appLabel = app + (versionLabel() ? ' ' + versionLabel() : '');
+
+    var lines = ['App: ' + appLabel, 'Topic: ' + topic.label, ''];
+    lines.push(topic.prompt, message, '');
+    if (topic.steps && steps) lines.push('Steps to reproduce:', steps, '');
+    if (device) lines.push('Device: ' + device, '');
+    if (context.platform || context.os || context.device || context.build) {
+      lines.push('Details: ' + [
+        context.platform && 'platform=' + context.platform,
+        context.os && 'os=' + context.os,
+        context.device && 'device=' + context.device,
+        context.version && 'version=' + context.version,
+        context.build && 'build=' + context.build
+      ].filter(Boolean).join(' '), '');
+    }
+    if (email) lines.push('Contact email: ' + email, '');
+
+    var subject = encodeURIComponent(appLabel + ' - ' + topic.label);
+    var body = encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:' + EMAIL + '?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "8a6bfc77337d43c0b1b5c580ae95d5cc"}'></script>
 </body>
 </html>
